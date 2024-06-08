@@ -1,0 +1,61 @@
+一、日志
+    1.日志级别
+        日志级别用于定义日志记录的严重性，从而决定哪些日志消息会被记录。Python 的 logging 模块提供了以下标准日志级别，从低到高依次为：
+
+            DEBUG: 详细的信息，通常只在诊断问题时使用。
+            INFO: 确信一切按预期工作时的确认消息。
+            WARNING: 表明发生了意外的情况或不期望的事件，但软件仍继续运行。
+            ERROR: 由于更严重的问题，软件已不能执行某些功能。
+            CRITICAL: 严重错误，表明程序可能无法继续运行
+
+        例子：
+
+            logger.debug('This is a debug message')
+            logger.info('This is an info message')
+            logger.warning('This is a warning message')
+            logger.error('This is an error message')
+            logger.critical('This is a critical message')
+
+    2.输出格式
+        输出格式用于定义日志消息的显示样式。使用 logging.Formatter 可以设置日志消息的格式。常见的格式化字符串包括：
+
+            %(asctime)s: 日志事件发生的时间。
+            %(name)s: 日志记录器的名称。
+            %(levelname)s: 日志级别名称。
+            %(message)s: 日志消息。
+        
+        例子：
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            这将生成类似以下格式的日志消息：
+                2024-06-06 12:34:56,789 - root - INFO - This is an info message
+
+    3.输出位置
+        输出位置决定了日志消息将被记录到哪里。常见的输出位置包括控制台（标准输出）、文件以及其他自定义处理器。
+            
+            控制台输出（Console Output）: 使用 StreamHandler 将日志输出到控制台。
+                例子：
+                    console_handler = logging.StreamHandler(sys.stdout)
+                    console_handler.setFormatter(formatter)
+                    logger.addHandler(console_handler)
+
+            文件输出（File Output）: 使用 FileHandler 将日志输出到文件
+                例子：
+                    file_handler = logging.FileHandler('project.log')
+                    file_handler.setFormatter(formatter)
+                    logger.addHandler(file_handler)
+
+    4.根日志记录器
+        日志记录器的层次结构
+            在 Python 的 logging 模块中，日志记录器（logger）按照层次结构组织，
+            每个日志记录器都可以有自己的处理器（handler）、过滤器（filter）和格式化器（formatter）。
+            根日志记录器（root logger）是这个层次结构的顶端，所有其他日志记录器都继承自它。
+
+        为什么要获取根日志记录器？
+            根日志记录器是默认的日志记录器。它在 logging 模块中被自动创建并且是所有日志记录操作的默认目标。
+            如果没有显式地创建其他日志记录器，所有的日志消息都会被根日志记录器处理。
+            因此，获取并配置根日志记录器可以确保整个应用程序的日志记录行为统一和一致。
+
+
+二、solver求解器
+    Solver 负责初始化优化器、设置训练参数、执行训练循环、计算损失和梯度、更新模型参数等
+
