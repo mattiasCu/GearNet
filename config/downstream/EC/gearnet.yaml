@@ -51,7 +51,7 @@ scheduler:
 
 engine:
   gpus: {{ gpus }}
-  batch_size: 2
+  batch_size: 4
   log_interval: 1000
 
 metric: f1_max

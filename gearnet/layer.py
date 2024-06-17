@@ -105,7 +105,7 @@ class GeometricRelationalGraphConv(nn.Module):
         if self.edge_linear:
             message += self.edge_linear(graph.edge_feature.float())
         if edge_input is not None:
-            assert edge_input.shape == message.shape
+            assert edge_input.shape == message.shape        #用于确保两个变量edge_input和message的形状（shape）相同，如果条件为假，assert语句将触发一个AssertionError异常
             message += edge_input
         return message
     

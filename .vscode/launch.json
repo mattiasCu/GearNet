@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Launch distributed training (master)",
+          "type": "debugpy",
+          "request": "launch",
+          //"program": "${workspaceFolder}/script/downstream.py",
+          "module": "torch.distributed.launch",
+          "console": "integratedTerminal",
+          "args": [
+              //"-m", "torch.distributed.launch",
+              "--nproc_per_node=2",
+              "${workspaceFolder}/script/downstream.py",
+              "-c", "config/downstream/EC/gearnet.yaml",
+              "--gpus", "[0,1]"
+          ],
+
+          "env": {
+              "PYTHONPATH": "${workspaceFolder}"
+          }
+      }
+  ]
+}
