@@ -44,10 +44,10 @@ class Fold3D(data.ProteinDataset):
             self.load_hdf5s(pdb_files, verbose=verbose, **kwargs)
             self.save_pickle(pkl_file, verbose=verbose)
 
-        label_files = [os.path.join(path, '%s.txt' % split) for split in self.splits]
-        class_map = os.path.join(path, 'class_map.txt')
-        label_list = self.get_label_list(label_files, class_map)
-        fold_labels = [label_list[os.path.basename(pdb_file)[:-5]] for pdb_file in self.pdb_files]
+        label_files = [os.path.join(path, '%s.txt' % split) for split in self.splits]                   # 创建标签文件路径列表 label_files
+        class_map = os.path.join(path, 'class_map.txt')                                                 # 创建类别映射文件路径 class_map
+        label_list = self.get_label_list(label_files, class_map)                                        # 获取标签列表 label_list
+        fold_labels = [label_list[os.path.basename(pdb_file)[:-5]] for pdb_file in self.pdb_files]      # 获取fold标签列表 fold_labels
         self.targets = {'fold_label': fold_labels}
 
         splits = [os.path.basename(os.path.dirname(pdb_file)) for pdb_file in self.pdb_files]
